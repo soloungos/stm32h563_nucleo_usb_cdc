@@ -70,6 +70,21 @@ static void MX_DCACHE1_Init(void);
 /* USER CODE BEGIN 0 */
 #define BUFF_SIZE (1024)
 uint8_t buffer[1024*2];
+
+void HAL_SAI_RxCpltCallback(SAI_HandleTypeDef *hsai)
+{
+}
+
+/**
+  * @brief Rx Transfer half completed callback.
+  * @param  hsai pointer to a SAI_HandleTypeDef structure that contains
+  *              the configuration information for SAI module.
+  * @retval None
+  */
+void HAL_SAI_RxHalfCpltCallback(SAI_HandleTypeDef *hsai)
+{
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -315,7 +330,7 @@ static void MX_SAI1_Init(void)
   hsai_BlockA1.SlotInit.FirstBitOffset = 0;
   hsai_BlockA1.SlotInit.SlotSize = SAI_SLOTSIZE_DATASIZE;
   hsai_BlockA1.SlotInit.SlotNumber = 8;
-  hsai_BlockA1.SlotInit.SlotActive = 0x00000000;
+  hsai_BlockA1.SlotInit.SlotActive = 0x00000007;
   if (HAL_SAI_Init(&hsai_BlockA1) != HAL_OK)
   {
     Error_Handler();
